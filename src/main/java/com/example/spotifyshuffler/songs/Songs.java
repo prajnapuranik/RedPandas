@@ -14,16 +14,16 @@ public class Songs {
      */
 
     @Id
-    private String title;
+    String title;
 
-    private String artist;
-    private String genre;
-    private int year;
-    private int bpm;
-    private int nrgy;
-    private int dnce;
-    private int dB;
-    private int pop;
+    String artist;
+    String genre;
+    int year;
+    int bpm;
+    int nrgy;
+    int dnce;
+    int dB;
+    int pop;
 
     public Songs(String title, String artist, String genre, int year, int bpm, int nrgy, int dnce, int dB, int pop) {
         this.title = title;

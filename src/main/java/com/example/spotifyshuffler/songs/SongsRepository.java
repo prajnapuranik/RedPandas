@@ -14,11 +14,17 @@ public interface SongsRepository extends MongoRepository<Songs, String> {
     We only want to project the field’s name and quantity in the query response, so we set those fields to 1.
 
      */
-   /* @Query("{name:'?0'}")
-    Songs findItemByName(String title);
+    @Query("{artist:'?0'}")
+    List<Songs> findByArtist(String artist);
 
-    void deleteById(String id);
-    */
+    @Query("{title:'?0'}")
+    Songs findByTitle(String title);
+
+    @Query("{year:'?0'}")
+    List<Songs> findByYear(int year);
+
+    @Query("{title:'?0'}")
+    String deleteByTitle(String title);
 
     /*
     @Query("{artist:'?0'}")
