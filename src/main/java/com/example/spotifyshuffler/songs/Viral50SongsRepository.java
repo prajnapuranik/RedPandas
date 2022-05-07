@@ -1,11 +1,10 @@
 package com.example.spotifyshuffler.songs;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface SongsRepository extends MongoRepository<Songs, String> {
+public interface Viral50SongsRepository extends MongoRepository<SongsViral50, String> {
 
     //Read operations
     @Query("{title:'?0'}")

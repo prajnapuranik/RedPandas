@@ -4,19 +4,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 import java.util.Date;
 
 @Document(collection = "top200")
 public class Songs {
 
+    /*
     @Id
     private ObjectId id;
+     */
 
+    @Id
     private String title;
-
     int rank;
-
     private String artist;
     private String region;
     private String chart;
@@ -37,8 +38,18 @@ public class Songs {
         //this.date = date;
     }
 
+    /*
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+     */
+
     public String getTitle() {
-        System.out.println(title);
+        //System.out.println(title);
         return title;
     }
 

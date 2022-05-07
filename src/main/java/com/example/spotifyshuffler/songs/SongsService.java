@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class SongsService {
@@ -25,11 +27,13 @@ public class SongsService {
         return songsList;
     }
 
-    public List<Songs> getSongsByRank(String rank){
+    //NOT WORKING
+    public List<Songs> getSongsByRank(int rank){
         List<Songs> songsList = songsRepo.findByRank(rank);
         return songsList;
     }
 
+    //NOT WORKING
     public List<Songs> getSongsByRankLessThan(){
         List<Songs> songsList= songsRepo.getSongsByRank();
         return songsList;
@@ -40,11 +44,28 @@ public class SongsService {
         return songsList;
     }
 
-    public List<Songs> getSongsByTitle(String title){
-        List<Songs> songsList = songsRepo.findByTitle(title);
+    public Songs getSongsByTitle(String title){
+        return songsRepo.findByTitle(title);
+    }
+
+    public Integer getSongsCountByArtist(String artist){
+        return songsRepo.getSongsCountByArtist(artist);
+    }
+
+    public List<Songs> getSongRankGreaterThan(int rank){
+        List<Songs> songsList= songsRepo.findByRankGreaterThan(rank);
         return songsList;
     }
 
+    /*
+    public List<Songs> getSongRankLesserThan(int rank){
+        List<Songs> songsList= songsRepo.findByRankLesserThan(rank);
+        return songsList;
+    }
+
+     */
+
+    //NOT WORKING
     public List<Songs> getSongsByStreams(Double streams){
         List<Songs> songsList= new ArrayList<>() ;
         for(Songs s: songsRepo.findByStreams(streams)){
@@ -60,18 +81,52 @@ public class SongsService {
     }
 
     //Update
-
-    /*
-    public Songs updateSongArtist(Songs song){
+    public Songs updateSongArtist(Songs song) {
         Songs newSong = songsRepo.findByTitle(song.getTitle());
         newSong.setArtist(song.getArtist());
         return songsRepo.save(song);
-    }*/
+    }
+
+    public Songs updateSongTitle(Songs song) {
+        Songs newSong = songsRepo.findByTitle(song.getTitle());
+        newSong.setTitle(song.getTitle());
+        return songsRepo.save(song);
+    }
+
+    public Songs updateSongRegion(Songs song) {
+        Songs newSong = songsRepo.findByTitle(song.getTitle());
+        newSong.setRegion(song.getRegion());
+        return songsRepo.save(song);
+    }
+
+    public Songs updateSongChart(Songs song) {
+        Songs newSong = songsRepo.findByTitle(song.getTitle());
+        newSong.setChart(song.getChart());
+        return songsRepo.save(song);
+    }
 
     //DELETE
     public String deleteSongByTitle(String title){
-        songsRepo.deleteByTitle(title);
+
+        try {
+            songsRepo.deleteByTitle(title);
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
         return "Deleted Successfully";
+    }
+
+    public String deleteSongByArtist(String artist){
+        try {
+            songsRepo.deleteByArtist(artist);
+        }catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+        return "Deleted Successfully";
+    }
+
+    public Long countAllDocuments(){
+        return songsRepo.countAllDocuments();
     }
 
 }
