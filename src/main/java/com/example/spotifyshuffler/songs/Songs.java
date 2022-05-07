@@ -1,44 +1,44 @@
 package com.example.spotifyshuffler.songs;
-
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
-import javax.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.format.annotation.DateTimeFormat;
 
-@Document(collection = "spotifylist")
+import javax.persistence.Id;
+import java.util.Date;
+
+@Document(collection = "top200")
 public class Songs {
 
-    /* If we don't specify ID, mongoDB will create a unique _id
-
     @Id
-    private String Id;
+    private ObjectId id;
 
+    private String title;
+
+    int rank;
+
+    private String artist;
+    private String region;
+    private String chart;
+    private Double streams;
+
+    /*
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME)
+    private java.util.Date date;
      */
 
-    @Id
-    String title;
-
-    String artist;
-    String genre;
-    int year;
-    int bpm;
-    int nrgy;
-    int dnce;
-    int dB;
-    int pop;
-
-    public Songs(String title, String artist, String genre, int year, int bpm, int nrgy, int dnce, int dB, int pop) {
+    public Songs(String title, int rank, String artist, String region, String chart, Double streams) {
         this.title = title;
+        this.rank = rank;
         this.artist = artist;
-        this.genre = genre;
-        this.year = year;
-        this.bpm = bpm;
-        this.nrgy = nrgy;
-        this.dnce = dnce;
-        this.dB = dB;
-        this.pop = pop;
+        this.region = region;
+        this.chart = chart;
+        this.streams = streams;
+        //this.date = date;
     }
 
-
     public String getTitle() {
+        System.out.println(title);
         return title;
     }
 
@@ -46,6 +46,23 @@ public class Songs {
         this.title = title;
     }
 
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    /*
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+        */
     public String getArtist() {
         return artist;
     }
@@ -54,59 +71,27 @@ public class Songs {
         this.artist = artist;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getRegion() {
+        return region;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
-    public int getYear() {
-        return year;
+    public String getChart() {
+        return chart;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setChart(String chart) {
+        this.chart = chart;
     }
 
-    public int getBpm() {
-        return bpm;
+    public Double getStreams() {
+        return streams;
     }
 
-    public void setBpm(int bpm) {
-        this.bpm = bpm;
-    }
-
-    public int getNrgy() {
-        return nrgy;
-    }
-
-    public void setNrgy(int nrgy) {
-        this.nrgy = nrgy;
-    }
-
-    public int getDnce() {
-        return dnce;
-    }
-
-    public void setDnce(int dnce) {
-        this.dnce = dnce;
-    }
-
-    public int getdB() {
-        return dB;
-    }
-
-    public void setdB(int dB) {
-        this.dB = dB;
-    }
-
-    public int getPop() {
-        return pop;
-    }
-
-    public void setPop(int pop) {
-        this.pop = pop;
+    public void setStreams(Double streams) {
+        this.streams = streams;
     }
 }
