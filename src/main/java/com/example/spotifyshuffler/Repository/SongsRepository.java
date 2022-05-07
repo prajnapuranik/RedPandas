@@ -1,10 +1,11 @@
-package com.example.spotifyshuffler.songs;
+package com.example.spotifyshuffler.Repository;
+import com.example.spotifyshuffler.Model.Songs;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface Viral50SongsRepository extends MongoRepository<SongsViral50, String> {
+public interface SongsRepository extends MongoRepository<Songs, String> {
 
     //Read operations
     @Query("{title:'?0'}")
@@ -12,9 +13,6 @@ public interface Viral50SongsRepository extends MongoRepository<SongsViral50, St
 
     @Query("{artist:'?0'}")
     List<Songs> findByArtist(String artist);
-
-    @Query("{rank:'?0'}")
-    List<Songs> findByRank(int rank);
 
     @Query("{region:'?0'}")
     List<Songs> findByRegion(String region);
@@ -27,11 +25,8 @@ public interface Viral50SongsRepository extends MongoRepository<SongsViral50, St
 
     List<Songs> findByRankGreaterThan(int rank);
 
-   // List<Songs> findByRankLesserThan(int rank);
-
-    //NOT WORKING
-    @Query("{rank: {$gte: ?20}}")
-    List<Songs> getSongsByRank();
+    @Query("{date:'?0'}")
+    List<Songs> findByDate(String date);
 
     //Delete
     @Query("{title:'?0'}")
@@ -42,4 +37,5 @@ public interface Viral50SongsRepository extends MongoRepository<SongsViral50, St
 
     @Query(value = "{}", count = true)
     Long countAllDocuments();
+
 }

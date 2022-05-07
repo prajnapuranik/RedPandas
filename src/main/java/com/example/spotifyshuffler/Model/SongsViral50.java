@@ -1,30 +1,26 @@
-package com.example.spotifyshuffler.songs;
+package com.example.spotifyshuffler.Model;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 
 @Document(collection = "viral50")
 public class SongsViral50 {
 
     @Id
-    String title;
-    String artist;
-    String region;
-    String chart;
-    String trend;
+    private String title;
+    private String date;
+    private String artist;
+    private String region;
+    private String chart;
+    private int rank;
 
-/*
-    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME)
-    private java.util.Date date;
-*/
-
-    public SongsViral50(String title, String artist, String region, String chart, String trend) {
+    public SongsViral50(String title, int rank, String date, String artist, String region, String chart, String trend) {
         this.title = title;
+        this.rank = rank;
         this.artist = artist;
         this.region = region;
         this.chart = chart;
-        this.trend = trend;
-        //this.date = date;
+        this.date = date;
     }
 
     public String getTitle() {
@@ -35,15 +31,22 @@ public class SongsViral50 {
         this.title = title;
     }
 
-    /*
-    public Date getDate() {
-        return date;
+    public int getRank() {
+        return rank;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
-    */
+
+    public String getDate() {
+            return date;
+    }
+
+    public void setDate(String date) {
+            this.date = date;
+    }
+
     public String getArtist() {
         return artist;
     }
@@ -66,14 +69,6 @@ public class SongsViral50 {
 
     public void setChart(String chart) {
         this.chart = chart;
-    }
-
-    public String getTrend() {
-        return trend;
-    }
-
-    public void setTrend(String trend) {
-        this.trend = trend;
     }
 
 }

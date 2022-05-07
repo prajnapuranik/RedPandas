@@ -1,4 +1,4 @@
-package com.example.spotifyshuffler.songs;
+package com.example.spotifyshuffler.Model;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -10,46 +10,27 @@ import java.util.Date;
 @Document(collection = "top200")
 public class Songs {
 
-    /*
-    @Id
-    private ObjectId id;
-     */
-
     @Id
     private String title;
     int rank;
+    private String date;
     private String artist;
     private String region;
     private String chart;
     private Double streams;
 
-    /*
-    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME)
-    private java.util.Date date;
-     */
 
-    public Songs(String title, int rank, String artist, String region, String chart, Double streams) {
+    public Songs(String title, int rank, String date, String artist, String region, String chart, Double streams) {
         this.title = title;
         this.rank = rank;
         this.artist = artist;
         this.region = region;
         this.chart = chart;
         this.streams = streams;
-        //this.date = date;
+        this.date = date;
     }
-
-    /*
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-     */
 
     public String getTitle() {
-        //System.out.println(title);
         return title;
     }
 
@@ -65,15 +46,14 @@ public class Songs {
         this.rank = rank;
     }
 
-    /*
-        public Date getDate() {
-            return date;
-        }
+    public String getDate() {
+        return date;
+    }
 
-        public void setDate(Date date) {
-            this.date = date;
-        }
-        */
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getArtist() {
         return artist;
     }

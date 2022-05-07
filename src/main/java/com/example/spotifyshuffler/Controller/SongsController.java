@@ -1,7 +1,9 @@
-package com.example.spotifyshuffler.songs;
+package com.example.spotifyshuffler.Controller;
 
 import java.util.List;
 
+import com.example.spotifyshuffler.Model.Songs;
+import com.example.spotifyshuffler.Service.SongsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,6 @@ public class SongsController {
         return songsService.getAllSongs();
     }
 
-    //TEST again
     @GetMapping("/findSongByTitle/{title}")
     public Songs getSongsByTitle(@PathVariable String title) {
         return songsService.getSongsByTitle(title);
@@ -46,14 +47,6 @@ public class SongsController {
         return songsService.getSongRankGreaterThan(rank);
     }
 
-    /*
-    @GetMapping("/findSongRankLesserThan/{rank}")
-    public List<Songs> findSongRankLesserThan(@PathVariable int rank) {
-        return songsService.getSongRankLesserThan(rank);
-    }
-     */
-
-    //NOT WORKING
     @GetMapping("/findSongByRank/{rank}")
     public List<Songs> getSongsByRank(@PathVariable int rank) {
         return songsService.getSongsByRank(rank);
@@ -64,17 +57,19 @@ public class SongsController {
         return songsService.countAllDocuments();
     }
 
-    //NOT WORKING
-    @GetMapping("/findSongsLessThanRank")
-    public List<Songs> getSongsByRankLessThan() {
-        return songsService.getSongsByRankLessThan();
+    @GetMapping("/getAllSongsInDate/{date}")
+    public List<Songs> getSongsDate(@PathVariable String date) {
+        return songsService.getDate(date);
     }
 
-    //NOT WORKING
-    @GetMapping("/findSongByStreams/{streams}")
-    public List<Songs> getSongsByStreams(@PathVariable Double streams) {
-        System.out.println(streams);
-        return songsService.getSongsByStreams(streams);
+    @GetMapping("/checkSongExists/{title}")
+    public void checkSongExists(@PathVariable String title){
+        System.out.println(songsService.checkSongExists(title));
+    }
+
+    @GetMapping("/getMostPopular/")
+    public Songs getMostPopular() {
+        return songsService.getMostPopular();
     }
 
     //Create
@@ -90,14 +85,6 @@ public class SongsController {
         System.out.println("Updated artist successfully");
         return songsService.updateSongArtist(song);
     }
-
-    /*
-    @PutMapping
-    public ResponseEntity<?> update(@RequestBody SuperHero superHero) {
-        SuperHero updatedSuperHero = superHeroService.update(superHero);
-        return ResponseEntity.ok().body(updatedSuperHero);
-    }
-     */
 
     @PutMapping("/updateSongTitle")
     public Songs updateSongTitle(@RequestBody Songs song){
@@ -116,7 +103,6 @@ public class SongsController {
         System.out.println("Updated chart successfully");
         return songsService.updateSongChart(song);
     }
-
 
     //Delete
     @DeleteMapping("/deleteSongByArtist/{title}")

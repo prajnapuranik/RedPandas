@@ -1,17 +1,20 @@
-package com.example.spotifyshuffler.songs;
+package com.example.spotifyshuffler.Service;
+import com.example.spotifyshuffler.Model.Songs;
+import com.example.spotifyshuffler.Repository.SongsCustomRepository;
+import com.example.spotifyshuffler.Repository.SongsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SongsService {
 
     @Autowired
     private SongsRepository songsRepo;
+
+    @Autowired
+    private SongsCustomRepository songsCustom;
 
     public List<Songs> getAllSongs() {
         List<Songs> songsList = new ArrayList<Songs>();
@@ -27,17 +30,11 @@ public class SongsService {
         return songsList;
     }
 
-    //NOT WORKING
     public List<Songs> getSongsByRank(int rank){
-        List<Songs> songsList = songsRepo.findByRank(rank);
+        List<Songs> songsList = songsCustom.getAllSongsForRank(rank);
         return songsList;
     }
 
-    //NOT WORKING
-    public List<Songs> getSongsByRankLessThan(){
-        List<Songs> songsList= songsRepo.getSongsByRank();
-        return songsList;
-    }
 
     public List<Songs> getSongsByRegion(String region){
         List<Songs> songsList= songsRepo.findByRegion(region);
@@ -57,27 +54,28 @@ public class SongsService {
         return songsList;
     }
 
-    /*
-    public List<Songs> getSongRankLesserThan(int rank){
-        List<Songs> songsList= songsRepo.findByRankLesserThan(rank);
+    public List<Songs> getDate(String date){
+        List<Songs> songsList= songsRepo.findByDate(date);
         return songsList;
     }
 
-     */
-
-    //NOT WORKING
-    public List<Songs> getSongsByStreams(Double streams){
-        List<Songs> songsList= new ArrayList<>() ;
-        for(Songs s: songsRepo.findByStreams(streams)){
-            songsList.add(s);
-        }
-        return songsList;
+    public Songs getMostPopular(){
+        Songs song= songsCustom.getMaxStreams();
+        return song;
     }
 
     //CREATE
     public Songs saveSongService(Songs song){
         return songsRepo.save(song);
         //return "Added song successfully";
+    }
+
+    public Long countAllDocuments(){
+        return songsRepo.countAllDocuments();
+    }
+
+    public boolean checkSongExists(String title) {
+        return songsCustom.checkSongExists(title);
     }
 
     //Update
@@ -125,8 +123,5 @@ public class SongsService {
         return "Deleted Successfully";
     }
 
-    public Long countAllDocuments(){
-        return songsRepo.countAllDocuments();
-    }
 
 }

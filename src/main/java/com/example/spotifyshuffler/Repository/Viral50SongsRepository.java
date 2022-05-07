@@ -1,38 +1,33 @@
-package com.example.spotifyshuffler.songs;
-import org.bson.types.ObjectId;
+package com.example.spotifyshuffler.Repository;
+import com.example.spotifyshuffler.Model.Songs;
+import com.example.spotifyshuffler.Model.SongsViral50;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface SongsRepository extends MongoRepository<Songs, String> {
+public interface Viral50SongsRepository extends MongoRepository<SongsViral50, String> {
 
     //Read operations
     @Query("{title:'?0'}")
-    Songs  findByTitle(String title);
+    Songs findByTitle(String title);
 
     @Query("{artist:'?0'}")
-    List<Songs> findByArtist(String artist);
+    List<SongsViral50> findByArtist(String artist);
 
     @Query("{rank:'?0'}")
-    List<Songs> findByRank(int rank);
+    List<SongsViral50> findByRank(int rank);
 
     @Query("{region:'?0'}")
-    List<Songs> findByRegion(String region);
+    List<SongsViral50> findByRegion(String region);
 
     @Query("{streams:'?0'}")
-    List<Songs> findByStreams(Double streams);
+    List<SongsViral50> findByStreams(Double streams);
 
     @Query(value ="{artist: ?0}", count=true)
     Integer getSongsCountByArtist(String artist);
 
-    List<Songs> findByRankGreaterThan(int rank);
-
-   // List<Songs> findByRankLesserThan(int rank);
-
-    //NOT WORKING
-    @Query("{rank: {$gte: ?20}}")
-    List<Songs> getSongsByRank();
+    List<SongsViral50> findByRankGreaterThan(int rank);
 
     //Delete
     @Query("{title:'?0'}")
