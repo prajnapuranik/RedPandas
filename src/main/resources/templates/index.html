@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Shuffler</title>
+</head>
+
+<style>
+
+
+</style>
+
+<body>
+<br>
+<div align="center">
+    <p><a th:href="@{/findAllSongs}">findAllSongs</a></p>
+    <p><a th:href="@{/getTotalCount}">getTotalCount</a></p>
+    <p><a th:href="@{/getMostPopular}">getMostPopular</a></p>
+    <p>
+    <form action="/findSongByTitle"  method="get">
+        <tr>
+            <td><label>findSongByTitle</label></td>
+            <td><input type="text" name= "title"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+    <p>
+    <form action="/findSongRankGreaterThan"  method="get">
+        <tr>
+            <td><label>findSongRankGreaterThan</label></td>
+            <td><input type="number" name= "rank"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+    <p>
+    <form action="/findSongByArtist"  method="get">
+            <tr>
+                <td><label>findSongByArtist</label></td>
+                <td><input type="text" name= "artist"/></td>
+            </tr>
+            <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+    <p>
+    <form action="/findSongByRegion"  method="get">
+        <tr>
+            <td><label>findSongByRegion</label></td>
+            <td><input type="text" name= "region"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+    <p>
+    <form action="/findSongCountByArtist"  method="get">
+        <tr>
+            <td><label>findSongCountByArtist</label></td>
+            <td><input type="text" name= "artist"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+    <p>
+    <form action="/findSongByRank"  method="get">
+        <tr>
+            <td><label>findSongByRank</label></td>
+            <td><input type="text" name= "rank"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/getAllSongsInDate"  method="get">
+        <tr>
+            <td><label>getAllSongsInDate</label></td>
+            <td><input type="text" name= "date"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/checkSongExists"  method="get">
+        <tr>
+            <td><label>checkSongExists</label></td>
+            <td><input type="text" name= "title"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/addSong"  method="get">
+        <tr>
+            <td><label>addSong</label></td>
+            <td><input type="text" name= "song"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/updateSongArtist"  method="get">
+        <tr>
+            <td><label>updateSongArtist</label></td>
+            <td><input type="text" name= "song"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/updateSongTitle"  method="get">
+        <tr>
+            <td><label>updateSongTitle</label></td>
+            <td><input type="text" name= "song"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/updateSongRegion"  method="get">
+        <tr>
+            <td><label>updateSongRegion</label></td>
+            <td><input type="text" name= "song"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/updateSongChart"  method="get">
+        <tr>
+            <td><label>updateSongChart</label></td>
+            <td><input type="text" name= "song"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/deleteSongByArtist"  method="get">
+        <tr>
+            <td><label>deleteSongByArtist</label></td>
+            <td><input type="text" name= "artist"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+    <p>
+    <form action="/deleteSongByTitle"  method="get">
+        <tr>
+            <td><label>deleteSongByTitle</label></td>
+            <td><input type="text" name= "title"/></td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"/></td></tr>
+    </form>
+    </p>
+
+
+
+</div>
+
+
+</body>
+</html>

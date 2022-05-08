@@ -85,4 +85,10 @@ public class Songs {
     public void setStreams(Double streams) {
         this.streams = streams;
     }
+
+    public String toString(){return "title:" + this.title +", rank:"+
+            this.rank + ", date:" + this.date + ", artist:" + this.artist +
+            ", region:"  + this.region + ", chart:" + this.chart +
+            ", streams:" + this.streams;
+        }
 }
